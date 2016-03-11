@@ -136,6 +136,7 @@ exts_list = [
     ('pcaMethods', '1.60.0', bioconductor_options),
     ('marray', '1.48.0', bioconductor_options),
     ('CGHbase', '1.30.0', bioconductor_options),
+    ('penalized', '0.9-45', ext_options),
     ('sigaR', '1.14.0', bioconductor_options),
     ('HCsnip', '1.10.0', bioconductor_options),
     ('metagenomeSeq', '1.12.0', bioconductor_options),
