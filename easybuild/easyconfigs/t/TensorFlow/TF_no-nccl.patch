@@ -1,0 +1,27 @@
+workaround for https://github.com/tensorflow/tensorflow/issues/10665
+--- tensorflow/contrib/BUILD.orig	2017-11-11 20:39:11.034107205 +0100
++++ tensorflow/contrib/BUILD	2017-11-11 20:39:30.134085519 +0100
+@@ -56,7 +56,6 @@
+         "//tensorflow/contrib/memory_stats:memory_stats_py",
+         "//tensorflow/contrib/meta_graph_transform",
+         "//tensorflow/contrib/metrics:metrics_py",
+-        "//tensorflow/contrib/nccl:nccl_py",
+         "//tensorflow/contrib/ndlstm",
+         "//tensorflow/contrib/nearest_neighbor:nearest_neighbor_py",
+         "//tensorflow/contrib/nn:nn_py",
+@@ -102,7 +101,6 @@
+         "//tensorflow/contrib/factorization/kernels:all_kernels",
+         "//tensorflow/contrib/input_pipeline:input_pipeline_ops_kernels",
+         "//tensorflow/contrib/layers:sparse_feature_cross_op_kernel",
+-        "//tensorflow/contrib/nccl:nccl_kernels",
+         "//tensorflow/contrib/nearest_neighbor:nearest_neighbor_ops_kernels",
+         "//tensorflow/contrib/seq2seq:beam_search_ops_kernels",
+         "//tensorflow/contrib/tensor_forest:model_ops_kernels",
+@@ -123,7 +121,6 @@
+         "//tensorflow/contrib/framework:all_ops",
+         "//tensorflow/contrib/input_pipeline:input_pipeline_ops_op_lib",
+         "//tensorflow/contrib/layers:sparse_feature_cross_op_op_lib",
+-        "//tensorflow/contrib/nccl:nccl_ops_op_lib",
+         "//tensorflow/contrib/nearest_neighbor:nearest_neighbor_ops_op_lib",
+         "//tensorflow/contrib/seq2seq:beam_search_ops_op_lib",
+         "//tensorflow/contrib/tensor_forest:model_ops_op_lib",
