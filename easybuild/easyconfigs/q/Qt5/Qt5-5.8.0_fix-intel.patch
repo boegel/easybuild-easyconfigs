@@ -1,0 +1,26 @@
+fixes for issues when building with Intel compilers
+* skip GCC version check (builds fine with Intel compilers too)
+* also provide deconstructor when using Intel compilers in HeapAllocator.h
+author: Kenneth Hoste (HPC-UGent)
+--- qt-everywhere-opensource-src-5.8.0/qtwebengine/tools/qmake/mkspecs/features/functions.prf.orig	2017-01-03 11:35:11.000000000 +0100
++++ qt-everywhere-opensource-src-5.8.0/qtwebengine/tools/qmake/mkspecs/features/functions.prf	2018-01-04 18:03:39.713451313 +0100
+@@ -20,7 +20,7 @@
+       skipBuild("Qt WebEngine on Linux requires clang or GCC.")
+       return(false)
+     }
+-    gcc:!clang:!isGCCVersionSupported(): return(false)
++    # gcc:!clang:!isGCCVersionSupported(): return(false)
+   } else:win32 {
+     winrt {
+       skipBuild("WinRT is not supported.")
+--- qt-everywhere-opensource-src-5.8.0/qtwebengine/src/3rdparty/chromium/third_party/WebKit/Source/platform/heap/HeapAllocator.h.orig	2018-01-06 20:37:46.440211768 +0100
++++ qt-everywhere-opensource-src-5.8.0/qtwebengine/src/3rdparty/chromium/third_party/WebKit/Source/platform/heap/HeapAllocator.h	2018-01-06 20:39:01.181691754 +0100
+@@ -107,7 +107,7 @@
+         return reinterpret_cast<Return>(ThreadHeap::allocate<Metadata>(size, IsEagerlyFinalizedType<Metadata>::value));
+     }
+ 
+-#if OS(WIN) && COMPILER(MSVC)
++#if (OS(WIN) && COMPILER(MSVC)) || defined(__INTEL_COMPILER)
+     // MSVC eagerly instantiates the unused 'operator delete',
+     // provide a version that asserts and fails at run-time if
+     // used.

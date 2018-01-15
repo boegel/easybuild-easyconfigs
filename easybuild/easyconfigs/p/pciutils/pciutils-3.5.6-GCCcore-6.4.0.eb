@@ -1,0 +1,27 @@
+easyblock = 'ConfigureMake'
+
+name = 'pciutils'
+version = '3.5.6'
+
+homepage = 'http://mj.ucw.cz/sw/pciutils'
+description = """The PCI Utilities are a collection of programs for inspecting and manipulating configuration of
+ PCI devices, all based on a common portable library libpci which offers access to the PCI configuration space on
+ a variety of operating systems."""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = ['https://www.kernel.org/pub/software/utils/pciutils/']
+sources = [SOURCE_TAR_GZ]
+checksums = ['04ca0dab0f1d190c7f5016dcea0cc3a024901bb01aeb7a3d4af5e5327b7a2448']
+
+builddependencies = [('binutils', '2.28')]
+
+skipsteps = ['configure']
+installopts = 'install-lib PREFIX=%(installdir)s'
+
+sanity_check_paths = {
+    'files': ['lib/libpci.a', 'sbin/lspci', 'sbin/setpci', 'sbin/update-pciids'],
+    'dirs': ['include/pci', 'lib/pkgconfig', 'share'],
+}
+
+moduleclass = 'tools'

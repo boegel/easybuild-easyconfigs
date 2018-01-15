@@ -13,6 +13,7 @@ source_urls = [
     'http://download.qt.io/archive/qt/%(version_major_minor)s/%(version)s/single/'
 ]
 sources = ['qt-everywhere-opensource-src-%(version)s.tar.xz']
+patches = ['Qt5-%(version)s_fix-intel.patch']
 checksums = ['0f4c54386d3dbac0606a936a7145cebb7b94b0ca2d29bc001ea49642984824b6']
 
 builddependencies = [
@@ -27,6 +28,8 @@ dependencies = [
     ('libpng', '1.6.32'),
     ('X11', '20171023'),
     ('libGLU', '9.0.0'),
+    ('DBus', '1.12.2'),
+    ('pciutils', '3.5.6'),
 ]
 
 moduleclass = 'devel'
