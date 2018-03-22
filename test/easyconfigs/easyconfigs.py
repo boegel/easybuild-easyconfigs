@@ -165,7 +165,7 @@ class EasyConfigTest(TestCase):
         def get_deps_for(ec):
             """Get list of (direct) dependencies for specified easyconfig."""
             deps = []
-            for dep in ec['ec']['dependencies']:
+            for dep in ec['ec'].dependencies():
                 dep_mod_name = dep['full_mod_name']
                 deps.append((dep['name'], dep['version'], dep['versionsuffix'], dep_mod_name))
                 res = [x for x in self.ordered_specs if x['full_mod_name'] == dep_mod_name]
