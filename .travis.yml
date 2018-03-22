@@ -55,4 +55,4 @@ script:
     - cd $HOME
     - export PYTHONPATH=$TRAVIS_BUILD_DIR
     - export PATH=$TRAVIS_BUILD_DIR/test/bin:$PATH
-    - python -O -m test.easyconfigs.suite
+    - travis_wait 30 python -O -m test.easyconfigs.suite
