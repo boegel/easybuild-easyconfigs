@@ -1,7 +1,7 @@
 name = 'bzip2'
 version = '1.0.6'
 
-homepage = 'https://sourceware.org/bzip2'
+homepage = 'http://www.bzip.org/'
 
 description = """
  bzip2 is a freely available, patent free, high-quality data compressor. It
@@ -10,16 +10,13 @@ description = """
  twice as fast at compression and six times faster at decompression.
 """
 
-toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+toolchain = {'name': 'GCCcore', 'version': '7.1.0'}
 toolchainopts = {'pic': True}
 
-source_urls = [
-    'https://fossies.org/linux/misc/',
-    'http://www.bzip.org/%(version)s/',
-]
+source_urls = ['http://www.bzip.org/%(version)s']
 sources = [SOURCE_TAR_GZ]
-# MD5 rather than SHA256 checksum is trouble
-checksums = ['00b516f4704d4a7cb50a1d97e6e8e15b']
+checksums = ['a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd']
+# new easyconfig *with* SHA256 checksum
 
 builddependencies = [
     ('binutils', '2.28'),
