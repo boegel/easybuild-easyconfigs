@@ -50,10 +50,7 @@ exts_list = [
         'patches': ['numpy-1.12.0-mkl.patch'],
         'source_tmpl': '%(name)s-%(version)s.zip',
         'source_urls': ['https://pypi.python.org/packages/source/n/numpy/'],
-        'checksums': [
-            'a4a433b3a264dbc9aa9c7c241e87c0358a503ea6394f8737df1683c7c9a102ac',  # numpy-1.14.5.zip
-            'f212296ed289eb1b4e3f703997499dee8a2cdd0af78b55e017477487b6377ca4',  # numpy-1.12.0-mkl.patch
-        ],
+        # missing checksum...
     }),
     ('scipy', '1.1.0', {
         'source_urls': ['https://pypi.python.org/packages/source/s/scipy/'],
