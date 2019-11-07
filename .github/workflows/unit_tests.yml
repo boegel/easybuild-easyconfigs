@@ -107,7 +107,7 @@ jobs:
           eb --show-system-info
 
           # run test suite
-          python -O -m test.easyconfigs.suite
+          python -O -m cProfile -s cumtime test/easyconfigs/suite.py #python -O -m test.easyconfigs.suite
 
           unset PYTHONPATH
 
