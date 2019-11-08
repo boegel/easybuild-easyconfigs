@@ -106,8 +106,13 @@ jobs:
           # gather some useful info on test system
           eb --show-system-info
 
+          python -c 'debug = True if __debug__ else False; print("___debug__: %s" % debug)'
+          python -O -c 'debug = True if __debug__ else False; print("___debug__: %s" % debug)'
+
           # run test suite
           export PYTHONOPTIMIZE=1
+          python -c 'debug = True if __debug__ else False; print("___debug__: %s" % debug)'
+          python -O -c 'debug = True if __debug__ else False; print("___debug__: %s" % debug)'
           python -O -m cProfile -s cumtime test/easyconfigs/suite.py #python -O -m test.easyconfigs.suite
 
           unset PYTHONPATH
