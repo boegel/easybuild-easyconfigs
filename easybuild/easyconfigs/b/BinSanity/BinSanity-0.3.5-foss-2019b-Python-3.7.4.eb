@@ -36,7 +36,7 @@ use_pip = True
 download_dep_fail = True
 sanity_pip_check = True
 
-# The 'site-packages' subdir only contains Binsanity-0.3.3.dist-info
+# the 'site-packages' subdir only contains Binsanity-*.dist-info
 # => skipping import sanity_check as there is nothing to import
 options = {'modulename': False}
 
