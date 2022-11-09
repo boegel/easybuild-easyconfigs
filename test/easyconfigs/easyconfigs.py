@@ -1373,6 +1373,12 @@ def template_easyconfig_test(self, spec):
     error_msg = "'source' step should not be skipped in %s, since that implies not verifying checksums" % ec_fn
     self.assertFalse(ec['checksums'] and ('source' in ec['skipsteps']), error_msg)
 
+    # if exts_defaultclass is specified, make sure that easyblock exists
+    exts_defaultclass = ec['exts_defaultclass']
+    if exts_defaultclass:
+        self.assertTrue(isinstance(get_easyblock_class(exts_defaultclass), EasyBlock))
+
+    # check format of listed extensions
     for ext in ec.get_ref('exts_list'):
         if isinstance(ext, (tuple, list)) and len(ext) == 3:
             ext_name = ext[0]
@@ -1387,6 +1393,7 @@ def template_easyconfig_test(self, spec):
             # No options --> Only have a name which is valid, so nothing to check
             continue
 
+        # verify checksum for patch files for extensions
         checksums = ext_options.get('checksums', [])
         src_cnt = len(ext_options.get('sources', [])) or 1
         patch_checksums = checksums[src_cnt:]
@@ -1407,6 +1414,11 @@ def template_easyconfig_test(self, spec):
                 error_msg = "Invalid checksum for patch %s for %s extension in %s: %s"
                 res = verify_checksum(ext_patch_full, checksum)
                 self.assertTrue(res, error_msg % (ext_patch, ext_name, ec_fn, checksum))
+
+        # if a custom easyblock to use is specified, make sure it exists
+        ext_easyblock = ext.get('easyblock')
+        if ext_easyblock:
+            self.assertTrue(isinstance(get_easyblock_class(ext_easyblock), EasyBlock))
 
     # check whether all extra_options defined for used easyblock are defined
     extra_opts = app.extra_options()
