@@ -21,6 +21,9 @@ dependencies = [
     ('dask', '2025.5.1'),
     ('imageio', '2.37.0'),
     ('PyWavelets', '1.9.0'),
+    ('libjpeg-turbo', '3.1.0'),
+    ('LibTIFF', '4.7.0'),
+    ('libwebp', '1.5.0'),
 ]
 
 exts_list = [
