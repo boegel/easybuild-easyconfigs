@@ -35,7 +35,7 @@ builddependencies = [
 
 dependencies = [
     ('HeFFTe', '2.4.1'),
-    ('Kokkos', '4.7.01'),
+    ('Kokkos', '5.0.2'),
     ('HDF5', '1.14.6'),
 ]
 
