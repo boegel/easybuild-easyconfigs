@@ -1,5 +1,5 @@
 name = 'ESPResSo'
-version = '5.0.0'
+version = '5.0.1'
 
 homepage = 'https://espressomd.org/wordpress'
 description = """A software package for Molecular Dynamics and Monte Carlo
@@ -20,7 +20,7 @@ sources = [
 ]
 
 checksums = [{
-    'espresso-%(version)s.tar.gz': '8b6a6ce62fa9358464c789ed200f72e19b6687f999dc95b20b407ee1274cdf4e',
+    'espresso-%(version)s.tar.gz': '92b314c39e7715a9a8c347269bf2ffb8c85c23d6dfcadd3d81a7e04b67d89589',
     'walberla-3247aa73.tar.gz': 'd297b462e9ad2107ee968439266855b97aafaef39ef0b82f72129630116db059',
 }]
 
