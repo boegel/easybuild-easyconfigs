@@ -51,8 +51,4 @@ dependencies = [
     ('VTK', '9.5.0'),
 ]
 
-test_cmd = 'ctest'
-runtest = '-L "unit_test|python_test"'
-testopts = '--output-on-failure --no-tests=error'
-
 moduleclass = 'chem'
