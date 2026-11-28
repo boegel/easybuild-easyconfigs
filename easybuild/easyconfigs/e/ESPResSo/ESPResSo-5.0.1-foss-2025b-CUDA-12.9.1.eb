@@ -1,0 +1,65 @@
+name = 'ESPResSo'
+version = '5.0.1'
+versionsuffix = '-CUDA-%(cudaver)s'
+
+homepage = 'https://espressomd.org/wordpress'
+description = """A software package for Molecular Dynamics and Monte Carlo
+simulations of bead-spring models, with electrostatics, magnetostatics,
+hydrodynamics and reaction-diffusion-advection solvers."""
+
+sources = [
+    {
+        'source_urls': ['https://github.com/espressomd/espresso/archive/'],
+        'filename': 'espresso-%(version)s.tar.gz',
+        'download_filename': '%(version)s.tar.gz',
+    },
+    {
+        'source_urls': ['https://github.com/lssfau/walberla/archive/'],
+        # using specific waLBerla commit, because most recent release (v7.2) is missing bugfixes that prevent packaging
+        'filename': 'walberla-3247aa73.tar.gz',
+        'download_filename': '3247aa73.tar.gz',
+    },
+]
+checksums = [
+    {'espresso-5.0.1.tar.gz': '92b314c39e7715a9a8c347269bf2ffb8c85c23d6dfcadd3d81a7e04b67d89589'},
+    {'walberla-3247aa73.tar.gz': ('8d0c56722670e233d791bf735e91d578570c7e90b9b561e225e38179e2417c0c',
+                                  'd297b462e9ad2107ee968439266855b97aafaef39ef0b82f72129630116db059')},
+]
+
+toolchain = {'name': 'foss', 'version': '2025b'}
+toolchainopts = {'openmp': True, 'usempi': True, 'pic': True}
+
+builddependencies = [
+    ('CMake', '3.31.8'),
+    ('Ninja', '1.13.0'),
+    ('Cython', '3.2.4'),
+]
+
+# note: Kokkos + Cabana arepurposely left out as dependency,
+# since building with both CUDA & Kokkos doesn't make much sense for ESPResSo 5.0.1;
+# based on feedback from ESPResSo developer JN Grad;
+# see also https://github.com/espressomd/espresso/pull/5400
+dependencies = [
+    ('CUDA', '12.9.1', '', SYSTEM),
+    ('Python', '3.13.5'),
+    ('SciPy-bundle', '2025.07'),
+    ('Boost.MPI', '1.88.0'),
+    ('HeFFTe', '2.4.1', versionsuffix),
+    ('OpenGL', '2025.09'),
+    ('GSL', '2.8'),
+    ('NLopt', '2.10.0'),
+    ('IPython', '9.4.0'),
+    ('Pint', '0.25'),
+    ('HDF5', '1.14.6'),
+    ('h5py', '3.14.0'),
+    ('HighFive', '3.3.0'),
+    ('VTK', '9.5.2'),
+]
+
+# required to fix compilation error:
+# /software/Kokkos/5.2.1-GCC-14.3.0-CUDA-12.9.1/include/Cuda/Kokkos_Cuda_Parallel_Range.hpp(42):
+# error: calling a constexpr __host__ function("operator()") from a __device__ function("exec_range") is not allowed.
+# The experimental flag '--expt-relaxed-constexpr' can be used to allow this.
+configopts = "-DCMAKE_CUDA_FLAGS='--expt-relaxed-constexpr'"
+
+moduleclass = 'chem'
